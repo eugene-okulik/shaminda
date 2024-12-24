@@ -17,7 +17,8 @@ print(last_element)
 my_dict['list'].append(6)
 del my_dict['list'][1]
 
-my_dict['dict']['i am a tuple'] = 'new value'
+# Изменено: ключ теперь кортеж ('i am a tuple',)
+my_dict['dict'][('i am a tuple',)] = 'new value'
 del my_dict['dict']['three_value']
 
 my_dict['set'].add('ggg')
