@@ -34,18 +34,6 @@ subjects_str = ', '.join(subjects)
 
 print(f'Students {students_str} study these subjects: {subjects_str}')
 
-students = ['Ivanov', 'Petrov', 'Sidorov']
-subjects = ['math', 'biology', 'geography']
-new_str = str(students[0])
-new_str_two = str(students[1])
-new_str_three = str(students[2])
-subjects_one = str(subjects[0])
-subjects_two = str(subjects[1])
-subjects_three = str(subjects[2])
-
-print(f'Students {new_str}, {new_str_two}, {new_str_three} study these subjects: {subjects_one}, {subjects_two}, {subjects_three} ')
-
-
 
 
 
