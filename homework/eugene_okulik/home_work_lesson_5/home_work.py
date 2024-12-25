@@ -44,7 +44,6 @@ subjects_two = str(subjects[1])
 subjects_three = str(subjects[2])
 
 print(f'Students {new_str}, {new_str_two}, {new_str_three} study these subjects: {subjects_one}, {subjects_two}, {subjects_three} ')
-#сначало сделал без джойнов , попробовал получилось, но запись длинная и не особо читаема
 
 
 
