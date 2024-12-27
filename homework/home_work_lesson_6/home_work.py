@@ -6,12 +6,15 @@ random_text = (
 new_text = []
 
 for text in random_text.split():
+    punctuation = ''
     if text.endswith(','):
-        new_text.append(text[:-1] + 'ing')
+        punctuation = ','
+        text = text[:-1]
     elif text.endswith('.'):
-        new_text.append(text[:-1] + 'ing')
-    else:
-        new_text.append(text + 'ing')
+        punctuation = '.'
+        text = text[:-1]
+
+    new_text.append(text + 'ing' + punctuation)
 
 new_text_string = ' '.join(new_text)
 print(new_text_string)
