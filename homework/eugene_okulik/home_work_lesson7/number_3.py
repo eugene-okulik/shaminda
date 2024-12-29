@@ -2,6 +2,7 @@ def process_value(value):
     new_one_value = value.index(':') + 2
     number_str = value[new_one_value:]
 
+
     if number_str.isdigit():
         number = int(number_str)
         return number + 10
@@ -17,6 +18,7 @@ def process_value_two(value):
     new_two_value = value.index(':') + 2
     number_str_two = value[new_two_value:]
 
+
     if number_str_two.isdigit():
         number = int(number_str_two)
         return number + 10
@@ -30,6 +32,7 @@ if result is not None:
 def process_value_three(value):
     new_three_value = value.index(':') + 2
     number_str_three = value[new_three_value:]
+
 
     if number_str_three.isdigit():
         number = int(number_str_three)
