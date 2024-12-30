@@ -6,9 +6,10 @@ sys.set_int_max_str_digits(1000000)
 user_input = int(input('Какая у тебя зарплата?: '))
 bonus = random.choice([True, False])
 
+
 def user_count_bonus(user_input, bonus):
     if user_input > 0:
-        if bonus == True:
+        if bonus:
             count = random.randint(100, 1000)
             total_salary = user_input + count
             return f'Итоговая зарплата с бонусом: ${total_salary}'
@@ -16,6 +17,7 @@ def user_count_bonus(user_input, bonus):
             return f'Итоговая зарплата: ${user_input}'
     else:
         return "Зарплата должна быть больше 0."
+
 
 result = user_count_bonus(user_input, bonus)
 print(result)
@@ -26,6 +28,7 @@ def fibonacci_generator():
     while True:
         yield a
         a, b = b, a + b
+
 
 fib_gen = fibonacci_generator()
 
