@@ -28,7 +28,8 @@ class SchollBook(Book):
         reserved_status = 'зарезервирована' if self.reserved else 'не зарезервирована'
         return (f'Название: {self.title}, Автор: {self.author}, '
                 f'страниц: {self.num_pages}, предмет: {self.subject}, '
-                f'класс: {self.school_class}, {reserved_status}, {is_mission_status}'.strip())
+                f'класс: {self.school_class}, {reserved_status}, '
+                f'{is_mission_status}'.strip())
 
 
 book_one = Book('Война и мир', 'Толстой', 1200)
