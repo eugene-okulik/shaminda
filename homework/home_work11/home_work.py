@@ -47,7 +47,11 @@ scholl_book1 = SchollBook(
     subject='Английский', school_class='10'
 )
 
-books = [book_one, book_two, book_three, book_four, book_five, scholl_book, scholl_book1]
+books = [
+    book_one, book_two, book_three, book_four,
+    book_five, scholl_book, scholl_book1
+]
 
 for book in books:
     print(book)
+
