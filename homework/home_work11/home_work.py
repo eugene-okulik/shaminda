@@ -31,20 +31,16 @@ class SchollBook(Book):
                 f'класс: {self.school_class}, {reserved_status}, {is_mission_status}'.strip())
 
 
-
 book_one = Book('Война и мир', 'Толстой', 1200)
 book_two = Book('Преступление и наказание', 'Гоголь', 500, reserved=True)
 book_three = Book("1984", "Джордж Оруэлл", 328)
 book_four = Book("Моби Дик", "Герман Мелвилл", 635)
 book_five = Book("Убить пересмешника", "Харпер Ли", 281)
 
-
 scholl_book = SchollBook('Алгебра', 'Иванов', 200, reserved=True, subject='Математика', school_class='9', is_mission=True)
 scholl_book1 = SchollBook('Английский', 'Сидоров', 400, reserved=False, subject='Английский', school_class='10')
 
-
 books = [book_one, book_two, book_three, book_four, book_five, scholl_book, scholl_book1]
-
 
 for book in books:
     print(book)
