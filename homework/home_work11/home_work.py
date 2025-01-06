@@ -17,7 +17,8 @@ class Book:
 
 
 class SchollBook(Book):
-    def __init__(self, title, author, num_pages, isbn=None, reserved=False, subject=None, school_class=None, is_mission=False):
+    def __init__(self, title, author, num_pages, isbn=None, reserved=False,
+                 subject=None, school_class=None, is_mission=False):
         super().__init__(title, author, num_pages, isbn, reserved)
         self.subject = subject
         self.school_class = school_class
