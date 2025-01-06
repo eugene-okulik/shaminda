@@ -17,7 +17,11 @@ class Book:
 
 
 class SchollBook(Book):
-    def __init__(self, title, author, num_pages, isbn=None, reserved=False, subject=None, school_class=None, is_mission=False):
+    def __str__(self):
+        reserved_status = 'зарезервирована' if self.reserved else 'не зарезервирована'
+        return (f'Название: {self.title}, Автор: {self.author}, '
+                f'страниц: {self.num_pages}, '
+                f'материал: {self.material_of_pages}, {reserved_status}'.strip())
         super().__init__(title, author, num_pages, isbn, reserved)
         self.subject = subject
         self.school_class = school_class
