@@ -12,8 +12,8 @@ class Book:
     def __str__(self):
         reserved_status = 'зарезервирована' if self.reserved else 'не зарезервирована'
         return (f'Название: {self.title}, Автор: {self.author}, '
-                f'страниц: {self.num_pages}, материал: {self.material_of_pages}, '
-                f'{reserved_status}'.strip())
+                f'страниц: {self.num_pages}, '
+                f'материал: {self.material_of_pages}, {reserved_status}'.strip())
 
 
 class SchollBook(Book):
