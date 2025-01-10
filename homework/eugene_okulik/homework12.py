@@ -10,13 +10,16 @@ class Flower:
         return (f"{self.name} ({self.color}) - Длина стебля: {self.stem_length} см, "
                 f"Стоимость: {self.price} руб.")
 
+
 class Rose(Flower):
     def __init__(self, stem_length, price):
         super().__init__("Роза", "Красный", stem_length, price, lifespan=7)
 
+
 class Tulip(Flower):
     def __init__(self, stem_length, price):
         super().__init__("Тюльпан", "Желтый", stem_length, price, lifespan=5)
+
 
 class Bouquet:
     def __init__(self):
@@ -42,6 +45,7 @@ class Bouquet:
     def __str__(self):
         return (f"Букет: {', '.join(str(flower) for flower in self.flowers)}\n"
                 f"Общая стоимость: {self.total_cost()} руб.")
+
 
 rose = Rose(stem_length=50, price=150)
 tulip = Tulip(stem_length=30, price=100)
