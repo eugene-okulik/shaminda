@@ -3,10 +3,12 @@ import re
 
 file_path = '../hw_13/data.txt'
 
+
 def read_file():
     with open(file_path, 'r') as file:
         for line in file.readlines():
             process_line(line.strip())
+
 
 def process_line(line):
     parts = line.split(' - ')
@@ -14,8 +16,6 @@ def process_line(line):
         return
 
     number = parts[0].strip()
-    text = parts[1].strip()
-
 
     date_match = re.search(r'(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+)', line)
 
@@ -24,7 +24,6 @@ def process_line(line):
         return
 
     date_str = date_match.group(1)
-
 
     date_obj = datetime.datetime.strptime(date_str, '%Y-%m-%d %H:%M:%S.%f')
 
@@ -40,5 +39,5 @@ def process_line(line):
         days_ago = (datetime.datetime.now() - date_obj).days
         print(f"Номер {number}: {days_ago} дней назад")
 
-# Читаем файл и обрабатываем его содержимое
+
 read_file()
