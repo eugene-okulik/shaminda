@@ -1,7 +1,9 @@
 import datetime
 import re
 
-file_path = '../hw_13/data.txt'
+file_path = '/Users/a123/shaminda/homework/eugene_okulik/hw_13/data.txt'
+
+
 
 
 def read_file():
