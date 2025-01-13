@@ -3,6 +3,7 @@ import re
 
 file_path = '/Users/a123/shaminda/homework/eugene_okulik/hw_13/data.txt'
 
+
 def read_file():
     with open(file_path, 'r') as file:
         for line in file.readlines():
@@ -23,7 +24,6 @@ def process_line(line):
         return
 
     date_str = date_match.group(1)
-
     date_obj = datetime.datetime.strptime(date_str, '%Y-%m-%d %H:%M:%S.%f')
 
     if number.startswith('1'):
