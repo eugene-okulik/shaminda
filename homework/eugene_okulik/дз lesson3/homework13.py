@@ -3,9 +3,6 @@ import re
 
 file_path = '/Users/a123/shaminda/homework/eugene_okulik/hw_13/data.txt'
 
-
-
-
 def read_file():
     with open(file_path, 'r') as file:
         for line in file.readlines():
