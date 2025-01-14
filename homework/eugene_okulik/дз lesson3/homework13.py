@@ -2,12 +2,12 @@ import os
 import datetime
 import re
 
-# Получаем путь к директории, где находится скрипт
+# если не сработает подскажите в коде, я не могу найти решения
 script_dir = os.path.dirname(os.path.abspath(__file__))
-# Указываем относительный путь  если это не сработает я не знаю как решить, подскажите в коде пожалуйста
-file_path = os.path.join(script_dir, '../hw_13/data.txt')  # Предполагается, что hw_13 находится на уровень выше
+file_path = os.path.join(script_dir, '../hw_13/data.txt')
 
 print(f"Путь к файлу: {file_path}")
+
 
 def read_file():
     try:
@@ -19,13 +19,13 @@ def read_file():
     except Exception as e:
         print(f"Произошла ошибка: {e}")
 
+
 def process_line(line):
     parts = line.split(' - ')
     if len(parts) < 2:
         return
 
     number = parts[0].strip()
-
     date_match = re.search(r'(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+)', line)
 
     if not date_match:
@@ -46,5 +46,6 @@ def process_line(line):
     elif number.startswith('3'):
         days_ago = (datetime.datetime.now() - date_obj).days
         print(f"Номер {number}: прошло дней - {days_ago}")
+
 
 read_file()
