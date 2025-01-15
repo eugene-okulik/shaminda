@@ -3,13 +3,12 @@ import datetime
 import re
 
 
-base_path = os.path.abspath(__file__)  # Получаем путь к текущему файлу
-
+base_path = os.path.abspath(__file__)
 homework_path = os.path.dirname(os.path.dirname(base_path))
-
 file_path = os.path.join(homework_path, 'hw_13', 'data.txt')
 
 print(f"Путь к файлу: {file_path}")
+
 
 def read_file():
     try:
@@ -20,6 +19,7 @@ def read_file():
         print(f"Ошибка: файл не найден по пути '{file_path}'. Убедитесь, что файл находится в нужной директории.")
     except Exception as e:
         print(f"Произошла ошибка: {e}")
+
 
 def process_line(line):
     parts = line.split(' - ')
@@ -48,5 +48,5 @@ def process_line(line):
         days_ago = (datetime.datetime.now() - date_obj).days
         print(f"Номер {number}: прошло дней - {days_ago}")
 
-read_file()
 
+read_file()
