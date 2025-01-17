@@ -1,13 +1,33 @@
-INSERT INTO students (name, second_name, group_id) VALUES ('Daniil', 'Shamin', 2425);
-INSERT INTO books (title, taken_by_student_id) VALUES ('Магия и реальность', 3843);
-INSERT INTO books (title, taken_by_student_id) VALUES ('Изучаем Python', 3843);
-INSERT INTO `groups` (title, start_date, end_date) VALUES ('randomnayaGrops', '2025-01-17', '2025-04-17');
-INSERT INTO subjets (title) VALUES ('Matematika_dlya_chainka');
-INSERT INTO subjets (title) VALUES ('Fizika_dlya_chainka');
-INSERT INTO lessons (title, subject_id) VALUES ('Algebra', 3727);
-INSERT INTO lessons (title, subject_id) VALUES ('Klassicheskaya Fizika', 3728);
-INSERT INTO marks (value, lesson_id, student_id) VALUES (4, 1, 3843);
-INSERT INTO marks (value, lesson_id, student_id) VALUES (5, 2, 3843);
+
+INSERT INTO students (name, second_name, group_id) VALUES ('Alex', 'Sidorov', NULL);
+
+
+SET @student_id = LAST_INSERT_ID();
+
+
+INSERT INTO books (title, taken_by_student_id) VALUES ('Основы программирования', @student_id);
+INSERT INTO books (title, taken_by_student_id) VALUES ('Введение в базы данных', @student_id);
+
+
+INSERT INTO `groups` (title, start_date, end_date) VALUES ('Gruppa2025', '2025-01-17', '2025-04-17');
+SET @group_id = LAST_INSERT_ID();
+UPDATE students SET group_id = @group_id WHERE id = @student_id;
+
+
+INSERT INTO subjets (title) VALUES ('Biologiya');
+INSERT INTO subjets (title) VALUES ('Himiya');
+
+INSERT INTO lessons (title, subject_id) VALUES ('Biologicheskie osnovy', 1);
+INSERT INTO lessons (title, subject_id) VALUES ('Ekologiya', 1);
+INSERT INTO lessons (title, subject_id) VALUES ('Organicheskaya himiya', 2);
+INSERT INTO lessons (title, subject_id) VALUES ('Neorganicheskaya himiya', 2);
+
+
+INSERT INTO marks (value, lesson_id, student_id) VALUES (3, 1, @student_id);
+INSERT INTO marks (value, lesson_id, student_id) VALUES (4, 2, @student_id);
+INSERT INTO marks (value, lesson_id, student_id) VALUES (5, 3, @student_id);
+INSERT INTO marks (value, lesson_id, student_id) VALUES (4, 4, @student_id);
+
 
 SELECT
     s.name AS student_name,
@@ -30,7 +50,6 @@ LEFT JOIN
 LEFT JOIN
     subjets sub ON l.subject_id = sub.id
 WHERE
-    s.id = 3843;
-
+    s.id = @student_id;
 
 
