@@ -11,29 +11,68 @@ db = mysql.connect(
 cursor = db.cursor()
 
 try:
-    cursor.execute("INSERT INTO students (name, second_name, group_id) VALUES (%s, %s, %s)", ('Alex', 'Sidorov', None))
+    cursor.execute(
+        "INSERT INTO students (name, second_name, group_id) VALUES (%s, %s, %s)",
+        ('Alex', 'Sidorov', None)
+    )
     student_id = cursor.lastrowid
 
-    cursor.execute("INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)", ('Основы программирования', student_id))
-    cursor.execute("INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)", ('Введение в базы данных', student_id))
+    cursor.execute(
+        "INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)",
+        ('Основы программирования', student_id)
+    )
+    cursor.execute(
+        "INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)",
+        ('Введение в базы данных', student_id)
+    )
 
-    cursor.execute("INSERT INTO `groups` (title, start_date, end_date) VALUES (%s, %s, %s)", ('Gruppa2025', '2025-01-17', '2025-04-17'))
+    cursor.execute(
+        "INSERT INTO `groups` (title, start_date, end_date) VALUES (%s, %s, %s)",
+        ('Gruppa2025', '2025-01-17', '2025-04-17')
+    )
     group_id = cursor.lastrowid
 
-    cursor.execute("UPDATE students SET group_id = %s WHERE id = %s", (group_id, student_id))
+    cursor.execute(
+        "UPDATE students SET group_id = %s WHERE id = %s",
+        (group_id, student_id)
+    )
 
     cursor.execute("INSERT INTO subjets (title) VALUES (%s)", ('Biologiya',))
     cursor.execute("INSERT INTO subjets (title) VALUES (%s)", ('Himiya',))
 
-    cursor.execute("INSERT INTO lessons (title, subject_id) VALUES (%s, %s)", ('Biologicheskie osnovy', 1))
-    cursor.execute("INSERT INTO lessons (title, subject_id) VALUES (%s, %s)", ('Ekologiya', 1))
-    cursor.execute("INSERT INTO lessons (title, subject_id) VALUES (%s, %s)", ('Organicheskaya himiya', 2))
-    cursor.execute("INSERT INTO lessons (title, subject_id) VALUES (%s, %s)", ('Neorganicheskaya himiya', 2))
+    cursor.execute(
+        "INSERT INTO lessons (title, subject_id) VALUES (%s, %s)",
+        ('Biologicheskie osnovy', 1)
+    )
+    cursor.execute(
+        "INSERT INTO lessons (title, subject_id) VALUES (%s, %s)",
+        ('Ekologiya', 1)
+    )
+    cursor.execute(
+        "INSERT INTO lessons (title, subject_id) VALUES (%s, %s)",
+        ('Organicheskaya himiya', 2)
+    )
+    cursor.execute(
+        "INSERT INTO lessons (title, subject_id) VALUES (%s, %s)",
+        ('Neorganicheskaya himiya', 2)
+    )
 
-    cursor.execute("INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)", (3, 1, student_id))
-    cursor.execute("INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)", (4, 2, student_id))
-    cursor.execute("INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)", (5, 3, student_id))
-    cursor.execute("INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)", (4, 4, student_id))
+    cursor.execute(
+        "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)",
+        (3, 1, student_id)
+    )
+    cursor.execute(
+        "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)",
+        (4, 2, student_id)
+    )
+    cursor.execute(
+        "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)",
+        (5, 3, student_id)
+    )
+    cursor.execute(
+        "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)",
+        (4, 4, student_id)
+    )
 
     cursor.execute("""
         SELECT
