@@ -31,7 +31,6 @@ try:
     )
     cursor = connection.cursor()
 
-
     csv_file_path = '/Users/a123/shaminda/homework/eugene_okulik/Lesson_16/hw_data/data.csv'
     with open(csv_file_path, newline='') as csv_file:
         file_data = csv.reader(csv_file)
