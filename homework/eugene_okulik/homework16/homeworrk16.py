@@ -1,8 +1,7 @@
 import csv
-import os
 import mysql.connector
 import creds
-
+import os
 
 DB_USER = creds.DB_USER
 DB_PASSW = creds.DB_PASSW
@@ -10,11 +9,9 @@ DB_HOST = creds.DB_HOST
 DB_PORT = creds.DB_PORT
 DB_NAME = creds.DB_NAME
 
-print(f"DB_USER: {DB_USER}")
-print(f"DB_PASSW: {DB_PASSW}")
-print(f"DB_HOST: {DB_HOST}")
-print(f"DB_PORT: {DB_PORT}")
-print(f"DB_NAME: {DB_NAME}")
+base_path = os.path.abspath(__file__)
+homework_path = os.path.dirname(os.path.dirname(base_path))
+csv_file_path = os.path.join(homework_path, 'lesson_16', 'hw_data', 'data.csv')
 
 try:
     if DB_PORT is not None:
@@ -31,24 +28,47 @@ try:
     )
     cursor = connection.cursor()
 
-    csv_file_path = '/Users/a123/shaminda/homework/eugene_okulik/Lesson_16/hw_data/data.csv'
     with open(csv_file_path, newline='') as csv_file:
         file_data = csv.reader(csv_file)
         header = next(file_data)
         missing_data = []
 
-        for row in file_data:
-            query = "SELECT * FROM students WHERE name = %s AND second_name = %s"
-            cursor.execute(query, (row[0], row[1]))
+        cursor.execute("SHOW TABLES")
+        tables = cursor.fetchall()
 
-            if not cursor.fetchone():
-                missing_data.append(row)
+        for table in tables:
+            table_name = table[0]
+            print(f"Проверка таблицы: {table_name}")
 
-        # Выводим отсутствующие данные
+            cursor.execute(f"DESCRIBE `{table_name}`")
+            columns = [column[0] for column in cursor.fetchall()]
+
+            print(f"Заголовки из CSV: {header}")
+            print(f"Столбцы в таблице '{table_name}': {columns}")
+
+            missing_headers = [col for col in header if col not in columns]
+            if missing_headers:
+                print(f"Отсутствуют заголовки: {missing_headers} в таблице '{table_name}'.")
+            else:
+                for row in file_data:
+                    conditions = ' AND '.join([f"{header[i]} = %s" for i in range(len(header))])
+                    query = f"SELECT * FROM `{table_name}` WHERE {conditions}"
+                    cursor.execute(query, row)
+
+                    result = cursor.fetchone()
+                    if result is None:
+                        missing_data.append((table_name, row))
+                    else:
+                        matched_fields = {header[i]: row[i] for i in range(len(header)) if row[i] == str(result[i])}
+                        print(f"Найдены совпадения в таблице '{table_name}': {matched_fields}")
+
+                csv_file.seek(0)
+                next(file_data)
+
         if missing_data:
             print("Отсутствующие данные в базе:")
-            for data in missing_data:
-                print(data)
+            for table, data in missing_data:
+                print(f"Таблица: {table}, Данные: {data}")
         else:
             print("Все данные из файла присутствуют в базе.")
 
