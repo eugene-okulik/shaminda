@@ -1,13 +1,15 @@
 import csv
 import mysql.connector
-import creds
 import os
+from dotenv import load_dotenv
 
-DB_USER = creds.DB_USER
-DB_PASSW = creds.DB_PASSW
-DB_HOST = creds.DB_HOST
-DB_PORT = creds.DB_PORT
-DB_NAME = creds.DB_NAME
+load_dotenv()
+
+DB_USER = os.getenv('DB_USER')
+DB_PASSW = os.getenv('DB_PASSW')
+DB_HOST = os.getenv('DB_HOST')
+DB_PORT = os.getenv('DB_PORT')
+DB_NAME = os.getenv('DB_NAME')
 
 base_path = os.path.abspath(__file__)
 homework_path = os.path.dirname(os.path.dirname(base_path))
@@ -17,7 +19,7 @@ try:
     if DB_PORT is not None:
         DB_PORT = int(DB_PORT)
     else:
-        raise ValueError("DB_PORT не задан в creds.py")
+        raise ValueError("DB_PORT не задан в .env файле")
 
     connection = mysql.connector.connect(
         user=DB_USER,
