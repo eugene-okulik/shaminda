@@ -1,6 +1,5 @@
 import requests
 
-
 def one_posts():
     response = requests.get('http://167.172.172.115:52353/object')
     print(response.json())
@@ -59,10 +58,4 @@ def delete():
     else:
         print("Ошибка: Не удалось удалить объект. Статус код:", response.status_code)
 
-
-
-one_posts()
-post()
-put()
-patch()
 delete()
