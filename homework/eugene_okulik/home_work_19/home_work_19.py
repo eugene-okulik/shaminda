@@ -41,8 +41,8 @@ def create_object():
         yield object_id
     else:
         raise AssertionError(
-            f"Ошибка: Не удалось создать объект. Статус: {response.status_code}, Ответ: {response.text}")
-
+            f"Ошибка: Не удалось создать объект. Статус: {response.status_code}, Ответ: {response.text}"
+        )
 
     delete_response = requests.delete(f'{BASE_URL}/{object_id}')
     assert delete_response.status_code in [204, 200], "Ошибка: Не удалось удалить объект"
