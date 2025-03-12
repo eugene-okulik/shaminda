@@ -53,7 +53,7 @@ def create_object():
     {"name": "test_object_2", "data": {"color": "blue", "size": "medium"}},
     {"name": "test_object_3", "data": {"color": "green", "size": "large"}}
 ])
-def test_create_objects(object_data, setup_teardown):
+def test_create_objects(object_data, setup_session, setup_teardown):
     headers = {'Content-Type': 'application/json'}
     response = requests.post(BASE_URL, json=object_data, headers=headers)
 
@@ -69,7 +69,7 @@ def test_create_objects(object_data, setup_teardown):
 
 
 @pytest.mark.critical
-def test_update_object(create_object, setup_teardown):
+def test_update_object(create_object, setup_session, setup_teardown):
     object_id = create_object
     body = {
         "name": "updated_object",
@@ -87,7 +87,7 @@ def test_update_object(create_object, setup_teardown):
 
 
 @pytest.mark.medium
-def test_partial_update_object(create_object, setup_teardown):
+def test_partial_update_object(create_object, setup_session, setup_teardown):
     object_id = create_object
     body = {
         "data": {
@@ -102,10 +102,19 @@ def test_partial_update_object(create_object, setup_teardown):
     assert response.status_code == 200, "Ошибка: Не удалось частично обновить объект"
 
 
-def test_get_object(create_object, setup_teardown):
+def test_get_object(create_object, setup_session, setup_teardown):
     object_id = create_object
     response = requests.get(f'{BASE_URL}/{object_id}')
 
     print(f"Get object response: {response.status_code} - {response.text}")
 
     assert response.status_code == 200, "Ошибка: Не удалось получить объект"
+
+
+def test_delete_object(create_object, setup_session, setup_teardown):
+    object_id = create_object
+    response = requests.delete(f'{BASE_URL}/{object_id}')
+
+    print(f"Delete object response: {response.status_code} - {response.text}")
+
+    assert response.status_code in [204, 200], "Ошибка: Не удалось удалить объект"
