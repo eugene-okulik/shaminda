@@ -3,6 +3,7 @@ import pytest
 
 BASE_URL = 'http://167.172.172.115:52353/object'
 
+
 @pytest.fixture
 def create_object():
     body = {
@@ -31,4 +32,3 @@ def create_object():
 
     delete_response = requests.delete(f'{BASE_URL}/{object_id}')
     assert delete_response.status_code in [204, 200], "Ошибка: Не удалось удалить объект"
-
