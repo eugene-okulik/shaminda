@@ -1,5 +1,6 @@
 import pytest
 import requests
+import allure
 
 BASE_URL = 'http://167.172.172.115:52353/object'
 
@@ -53,6 +54,8 @@ def create_object():
     {"name": "test_object_2", "data": {"color": "blue", "size": "medium"}},
     {"name": "test_object_3", "data": {"color": "green", "size": "large"}}
 ])
+@allure.feature('Object Creation')
+@allure.story('Create multiple objects')
 def test_create_objects(object_data, setup_session, setup_teardown):
     headers = {'Content-Type': 'application/json'}
     response = requests.post(BASE_URL, json=object_data, headers=headers)
@@ -69,6 +72,8 @@ def test_create_objects(object_data, setup_session, setup_teardown):
 
 
 @pytest.mark.critical
+@allure.feature('Object Update')
+@allure.story('Update an object')
 def test_update_object(create_object, setup_session, setup_teardown):
     object_id = create_object
     body = {
@@ -87,6 +92,8 @@ def test_update_object(create_object, setup_session, setup_teardown):
 
 
 @pytest.mark.medium
+@allure.feature('Object Update')
+@allure.story('Partial update of an object')
 def test_partial_update_object(create_object, setup_session, setup_teardown):
     object_id = create_object
     body = {
@@ -102,6 +109,8 @@ def test_partial_update_object(create_object, setup_session, setup_teardown):
     assert response.status_code == 200, "Ошибка: Не удалось частично обновить объект"
 
 
+@allure.feature('Object Retrieval')
+@allure.story('Get an object')
 def test_get_object(create_object, setup_session, setup_teardown):
     object_id = create_object
     response = requests.get(f'{BASE_URL}/{object_id}')
@@ -111,6 +120,8 @@ def test_get_object(create_object, setup_session, setup_teardown):
     assert response.status_code == 200, "Ошибка: Не удалось получить объект"
 
 
+@allure.feature('Object Deletion')
+@allure.story('Delete an object')
 def test_delete_object(create_object, setup_session, setup_teardown):
     object_id = create_object
     response = requests.delete(f'{BASE_URL}/{object_id}')
