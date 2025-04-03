@@ -9,6 +9,7 @@ TEST_DATA = [
     {"color": "red", "size": "xxl"}
 ]
 
+
 @pytest.mark.parametrize('data', TEST_DATA)
 def test_create_object(data):
     body = {

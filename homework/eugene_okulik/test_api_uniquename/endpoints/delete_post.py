@@ -1,7 +1,5 @@
 import requests
 from test_api_uniquename.endpoints.creat_post import CreatPost
-
-
 import allure
 
 
@@ -21,4 +19,3 @@ class DeleteObject(CreatPost):
     def check_object_deleted(self, object_id):
         response = requests.get(f"{self.url}/{object_id}", headers=self.headers)
         return response.status_code == 404  # Вернуть True, если объект удалён
-
