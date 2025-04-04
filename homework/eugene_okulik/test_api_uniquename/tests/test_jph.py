@@ -1,64 +1,74 @@
 import pytest
-from test_api_uniquename.endpoints.creat_post import CreatPost
-from test_api_uniquename.endpoints.delete_post import DeleteObject
-from test_api_uniquename.endpoints.to_change_post import ChangePost
 
-TEST_DATA = [
+
+
+@pytest.mark.parametrize('data', [
     {"color": "black", "size": "big"},
     {"color": "white", "size": "mini"},
     {"color": "red", "size": "xxl"}
-]
-
-
-@pytest.mark.parametrize('data', TEST_DATA)
-def test_create_object(data):
+])
+def test_create_object(for_post, data):
     body = {
         "name": "test_objected",
         "data": data
     }
-    post_creator = CreatPost()
-    post_creator.new_post(body)
-    post_creator.assertions_message()
+    for_post.create_object(body)
+    for_post.assert_response()
     print("Тест прошел успешно.")
 
 
-def test_change_object():
-    post_creator = CreatPost()
+def test_change_object(for_post, update):
     body = {
         "name": "test_objected",
         "data": {"color": "rrrr", "size": "smal"}
     }
-    post_creator.new_post(body)
-    post_creator.assertions_message()
-    object_id = post_creator.get_object_id()
+    for_post.create_object(body)
+    for_post.assert_response()
+    object_id = for_post.get_object_id()
 
-    post_change = ChangePost()
-    post_change.check_object_exists(object_id)
+    update.check_object_exists(object_id)
 
     update_body = {
         "name": "updated_objected",
         "data": {"color": "blue", "size": "large"}
     }
-    post_change.new_post(object_id, update_body)
-    post_change.assertions_message()
+    update.update_object(object_id, update_body)
+    update.assert_response()
     print("Тест прошел успешно.")
 
 
-def test_delete_object():
-    post_creator = CreatPost()
+def test_patch_object(for_post, update):
+    body = {
+        "name": "test_objected",
+        "data": {"color": "green"}
+    }
+    for_post.create_object(body)
+    for_post.assert_response()
+    object_id = for_post.get_object_id()
+
+    update.check_object_exists(object_id)
+
+    patch_body = {
+        "data": {"size": "medium"}  # Обновляем только размер
+    }
+    update.patch_object(object_id, patch_body)
+    update.assert_response()
+    print("Частичное обновление прошло успешно.")
+
+
+def test_delete_object(for_post, delete):
     body = {
         "name": "test_objected",
         "data": {"color": "black", "size": "big"}
     }
-    post_creator.new_post(body)
-    post_creator.assertions_message()
-    object_id = post_creator.get_object_id()
+    for_post.create_object(body)
+    for_post.assert_response()
+    object_id = for_post.get_object_id()
 
-    delete_post = DeleteObject()
-    delete_post.delete_obj(object_id)
-    delete_post.assertions_message()
+    delete.delete_object(object_id)
+    delete.assert_response()
 
-    if delete_post.check_object_deleted(object_id):
+    if delete.check_object_deleted(object_id):
         print("Объект успешно удален.")
     else:
         print("Объект все еще существует, удаление не удалось.")
