@@ -1,5 +1,6 @@
 import pytest
 
+
 @pytest.mark.parametrize('data', [
     {"color": "black", "size": "big"},
     {"color": "white", "size": "mini"},
