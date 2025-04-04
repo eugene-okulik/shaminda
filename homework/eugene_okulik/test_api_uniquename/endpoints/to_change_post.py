@@ -2,6 +2,7 @@ import requests
 import allure
 from test_api_uniquename.endpoints.base_post import BasePost
 
+
 class ChangePost(BasePost):
     @allure.step("Обновление объекта")
     def update_object(self, object_id, body):

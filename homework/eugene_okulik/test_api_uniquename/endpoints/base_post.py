@@ -10,6 +10,5 @@ class BasePost:
         assert self.response.status_code == expected_status_code, "Ошибка: Неверный статус ответа."
         assert 'id' in self.json, "Ошибка: В ответе отсутствует поле 'id'"
 
-
     def get_object_id(self):
         return self.json.get('id')
