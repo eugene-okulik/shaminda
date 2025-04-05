@@ -1,9 +1,9 @@
 import requests
 import allure
-from test_api_uniquename.endpoints.base_post import BasePost
+from test_api_uniquename.endpoints.base_endpoint import BaseEndpoint
 
 
-class ChangePost(BasePost):
+class ChangePost(BaseEndpoint):
     @allure.step("Обновление объекта")
     def update_object(self, object_id, body):
         self.response = requests.put(f'{self.url}/{object_id}', json=body, headers=self.headers)
