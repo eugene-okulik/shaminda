@@ -1,18 +1,20 @@
 import pytest
-from test_api_uniquename.endpoints.create_post import CreatePost
-from test_api_uniquename.endpoints.to_change_post import ChangePost
-from test_api_uniquename.endpoints.delete_post import DeleteObject
-
+from test_api_uniquename.endpoints.create_object import CreateObject
+from test_api_uniquename.endpoints.get_object import GetObject
+from test_api_uniquename.endpoints.change_object import ChangeObject
+from test_api_uniquename.endpoints.delete_object import DeleteObject
 
 @pytest.fixture()
-def for_post():
-    return CreatePost()
+def for_object():
+    return CreateObject()
 
+@pytest.fixture()
+def get_object():
+    return GetObject()
 
 @pytest.fixture()
 def update():
-    return ChangePost()
-
+    return ChangeObject()
 
 @pytest.fixture()
 def delete():
