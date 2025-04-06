@@ -2,6 +2,7 @@ import requests
 import allure
 from test_api_uniquename.endpoints.base_endpoint import BaseEndpoint
 
+
 class DeleteObject(BaseEndpoint):
     @allure.step("Удаление объекта")
     def delete_object(self, object_id):

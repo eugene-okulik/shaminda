@@ -2,6 +2,7 @@ import requests
 import allure
 from test_api_uniquename.endpoints.base_endpoint import BaseEndpoint
 
+
 class GetObject(BaseEndpoint):
     @allure.step("Получение объекта по ID")
     def get_object(self, object_id):
