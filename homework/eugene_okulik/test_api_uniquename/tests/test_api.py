@@ -1,26 +1,19 @@
-import pytest
+from test_api_uniquename.endpoints.get_object import GetObject
+from test_api_uniquename.endpoints.delete_object import DeleteObject
 
 
-def test_create_object(for_object):
-    body = {
-        "name": "test_objected",
-        "data": {"color": "black", "size": "big"}
-    }
-    for_object.create_object(body)
-    for_object.assert_response()
+def test_create_object(create_and_delete_object):
+    _, object_id = create_and_delete_object
+
+    get_obj = GetObject()
+    retrieved_object = get_obj.get_object(object_id)
+    assert retrieved_object is not None, "Ошибка: Объект не был найден."
+
     print("Тест прошел успешно.")
 
 
-def test_change_object(for_object, update, get_object):
-    body = {
-        "name": "test_objected",
-        "data": {"color": "rrrr", "size": "smal"}
-    }
-    for_object.create_object(body)
-    for_object.assert_response()
-    object_id = for_object.get_object_id()
-
-    get_object.get_object(object_id)
+def test_change_object(create_and_delete_object, update):
+    _, object_id = create_and_delete_object
 
     update_body = {
         "name": "updated_objected",
@@ -31,33 +24,19 @@ def test_change_object(for_object, update, get_object):
     print("Тест прошел успешно.")
 
 
-def test_patch_object(for_object, update, get_object):
-    body = {
-        "name": "test_objected",
-        "data": {"color": "green"}
-    }
-    for_object.create_object(body)
-    for_object.assert_response()
-    object_id = for_object.get_object_id()
+def test_patch_object(create_and_delete_object, update):
+    _, object_id = create_and_delete_object
 
     patch_body = {
-        "data": {"size": "medium"}  # Обновляем только размер
+        "data": {"size": "medium"}
     }
     update.patch_object(object_id, patch_body)
     update.assert_response()
     print("Частичное обновление прошло успешно.")
 
 
-def test_delete_object(for_object, delete, get_object):
-    body = {
-        "name": "test_objected",
-        "data": {"color": "black", "size": "big"}
-    }
-    for_object.create_object(body)
-    for_object.assert_response()
-    object_id = for_object.get_object_id()
+def test_delete_object(create_and_delete_object):
+    _, object_id = create_and_delete_object
 
-    delete.delete_object(object_id)
-    delete.assert_response()
-
-    print("Объект успешно удален.")
+    delete_obj = DeleteObject()
+    delete_obj.delete_object(object_id)

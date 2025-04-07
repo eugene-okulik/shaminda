@@ -23,3 +23,27 @@ def update():
 @pytest.fixture()
 def delete():
     return DeleteObject()
+
+
+@pytest.fixture()
+def create_and_delete_object():
+    obj = CreateObject()
+    body = {
+        "name": "test_objected",
+        "data": {"color": "black", "size": "big"}
+    }
+    obj.create_object(body)
+    obj.assert_response()
+    object_id = obj.get_object_id()
+
+    yield obj, object_id
+
+
+    get_obj = GetObject()
+    try:
+        get_obj.get_object(object_id)
+        delete_obj = DeleteObject()
+        delete_obj.delete_object(object_id)
+        delete_obj.assert_response()
+    except Exception:
+        print(f"Ошибка при удалении объекта")
