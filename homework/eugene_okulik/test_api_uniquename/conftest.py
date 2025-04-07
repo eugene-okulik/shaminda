@@ -38,12 +38,11 @@ def create_and_delete_object():
 
     yield obj, object_id
 
-
     get_obj = GetObject()
     try:
         get_obj.get_object(object_id)
         delete_obj = DeleteObject()
         delete_obj.delete_object(object_id)
         delete_obj.assert_response()
-    except Exception:
-        print(f"Ошибка при удалении объекта")
+    except:
+        print("Ошибка при удалении объекта")

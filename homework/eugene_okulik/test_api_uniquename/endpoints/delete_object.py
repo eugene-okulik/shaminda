@@ -8,7 +8,6 @@ class DeleteObject(BaseEndpoint):
     def delete_object(self, object_id):
         self.response = requests.delete(f'{self.url}/{object_id}', headers=self.headers)
 
-
         if self.response.status_code == 204:
             print(f"Объект с id {object_id} успешно удален.")
             self.json = None
