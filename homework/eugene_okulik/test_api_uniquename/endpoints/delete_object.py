@@ -12,8 +12,9 @@ class DeleteObject(BaseEndpoint):
             print(f"Объект с id {object_id} успешно удален.")
             self.json = None
         else:
-
-            if 'application/json' in self.response.headers.get('Content-Type', ''):
+            if self.response.status_code == 404:
+                print(f"Объект с id {object_id} не найден для удаления (возможно, он уже был удалён).")
+            elif 'application/json' in self.response.headers.get('Content-Type', ''):
                 try:
                     self.json = self.response.json()
                 except ValueError:

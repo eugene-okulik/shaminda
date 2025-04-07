@@ -44,5 +44,5 @@ def create_and_delete_object():
         delete_obj = DeleteObject()
         delete_obj.delete_object(object_id)
         delete_obj.assert_response()
-    except:
-        print("Ошибка при удалении объекта")
+    except Exception as e:
+        print(f"Ошибка при удалении объекта: {e}")
