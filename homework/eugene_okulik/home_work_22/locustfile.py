@@ -1,5 +1,6 @@
 from locust import task, HttpUser
 
+
 class PlaceHolder(HttpUser):
     @task(1)
     def get_list_user(self):
