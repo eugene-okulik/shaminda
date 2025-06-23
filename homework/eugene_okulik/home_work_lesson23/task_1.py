@@ -11,6 +11,7 @@ def driver():
     yield chrome_driver
     sleep(3)
 
+
 def test_first(driver):
     input_data = 'ctoto'
     sleep(3)

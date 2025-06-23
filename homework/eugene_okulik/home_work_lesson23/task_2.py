@@ -36,7 +36,8 @@ def test_second(driver_with_browser_2):
     input_6 = driver_with_browser_2.find_element(By.XPATH, "//input[@id='dateOfBirthInput' and @type='text']")
     input_6.click()
 
-    select = Select(driver_with_browser_2.find_element(By.XPATH, "//select[@class='react-datepicker__month-select']"))
+    select = Select(driver_with_browser_2.find_element(By.XPATH,
+                                                       "//select[@class='react-datepicker__month-select']"))
     select.select_by_visible_text("April")
 
     select_year = Select(
@@ -44,7 +45,8 @@ def test_second(driver_with_browser_2):
     select_year.select_by_visible_text("1998")
 
     day_choice = driver_with_browser_2.find_element(By.XPATH,
-                                                    "//div[@class='react-datepicker__day react-datepicker__day--029' and text()='29']")
+                                                    "//div[@class='react-datepicker__day"
+                                                    " react-datepicker__day--029' and text()='29']")
     day_choice.click()
 
     input_7 = driver_with_browser_2.find_element(By.ID, "subjectsInput")
@@ -54,7 +56,8 @@ def test_second(driver_with_browser_2):
     input_7.send_keys(Keys.ENTER)
     sleep(5)
 
-    input_8 = driver_with_browser_2.find_element(By.XPATH, "//label[@class='custom-control-label' and text()='Music']")
+    input_8 = driver_with_browser_2.find_element(By.XPATH, "//label[@class='custom-control-label'"
+                                                           " and text()='Music']")
     input_8.click()
 
     input_9 = driver_with_browser_2.find_element(By.XPATH, "//textarea[@placeholder='Current Address']")
@@ -74,7 +77,8 @@ def test_second(driver_with_browser_2):
     input_13.send_keys("Delhi")
     input_13.send_keys(Keys.ENTER)
 
-    input_14 = driver_with_browser_2.find_element(By.XPATH, "//button[@id='submit' and @class='btn btn-primary']")
+    input_14 = driver_with_browser_2.find_element(By.XPATH, "//button[@id='submit'"
+                                                            " and @class='btn btn-primary']")
     input_14.click()
 
     WebDriverWait(driver_with_browser_2, 10).until(
