@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from time import sleep
 import pytest
 
+
 @pytest.fixture
 def driver():
     chrome_driver = webdriver.Chrome()

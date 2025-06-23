@@ -98,7 +98,8 @@ def test_second(driver_with_browser_2):
     }
 
     table_rows = driver_with_browser_2.find_elements(By.XPATH,
-                                                     "//table[@class='table table-dark table-striped table-bordered table-hover']//tbody/tr")
+                                                     "//table[@class='table table-dark"
+                                                     " table-striped table-bordered table-hover']//tbody/tr")
     actual_data = {}
 
     for row in table_rows:
