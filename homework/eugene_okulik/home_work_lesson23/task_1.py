@@ -12,7 +12,6 @@ def driver():
     yield chrome_driver
 
 
-
 def test_first(driver):
     input_data = 'ctoto'
     driver.get('https://www.qa-practice.com/elements/input/simple')
