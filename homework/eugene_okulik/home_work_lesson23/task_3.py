@@ -1,7 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
-from time import sleep
 import pytest
 
 
@@ -10,7 +9,6 @@ def driver_with_browser_2():
     chrome_driver = webdriver.Chrome()
     chrome_driver.maximize_window()
     yield chrome_driver
-    sleep(5)
 
 
 def test_first(driver_with_browser_2):

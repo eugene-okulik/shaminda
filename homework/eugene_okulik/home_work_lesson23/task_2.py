@@ -4,7 +4,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select, WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pytest
-from time import sleep
 
 
 @pytest.fixture
@@ -12,7 +11,6 @@ def driver_with_browser_2():
     chrome_driver = webdriver.Chrome()
     chrome_driver.maximize_window()
     yield chrome_driver
-    sleep(5)
 
 
 def test_second(driver_with_browser_2):
@@ -52,9 +50,7 @@ def test_second(driver_with_browser_2):
     input_7 = driver_with_browser_2.find_element(By.ID, "subjectsInput")
     input_7.click()
     input_7.send_keys("English")
-    sleep(5)
     input_7.send_keys(Keys.ENTER)
-    sleep(5)
 
     input_8 = driver_with_browser_2.find_element(By.XPATH, "//label[@class='custom-control-label'"
                                                            " and text()='Music']")
