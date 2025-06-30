@@ -16,7 +16,7 @@ def driver():
 def test_compare_product(driver):
     driver.get("https://magento.softwaretestingboard.com/gear/bags.html")
     first_product = WebDriverWait(driver, 10).until(
-        EC.visibility_of_element_located((By.XPATH,"//li[@class='item product product-item']"))
+        EC.visibility_of_element_located((By.XPATH, "//li[@class='item product product-item']"))
     )
 
     ActionChains(driver).move_to_element(first_product).perform()
