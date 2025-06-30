@@ -34,7 +34,8 @@ def test_compare_product(driver):
     # а не появится ошибка не дающая сделать что либо
     # по этому дальше тест дописывал абстракто что все работает
     compare_products = compare_section.find_elements(By.XPATH,
-                                                     "//div[@class='empty' and text()='You have no items to compare.']")
+                                                     "//div[@class='empty'"
+                                                     " and text()='You have no items to compare.']")
     assert len(compare_products) > 0, "Товар не добавлен в секцию сравнения."
     # Выводим название первого товара в секции сравнения
     product_name = compare_products[0].find_element(By.XPATH, ".product-item-name").text
