@@ -16,8 +16,9 @@ def driver():
 def test_compare_product(driver):
     driver.get("https://magento.softwaretestingboard.com/gear/bags.html")
     first_product = WebDriverWait(driver, 10).until(
-        EC.visibility_of_element_located((By.XPATH, "//img[@class='product-image-photo' and @src='https://magento.softwaretestingboard.com/pub/media/catalog/product/cache/7c4c1ed835fbbf2269f24539582c6d44/w/b/wb04-blue-0.jpg']"))
+        EC.visibility_of_element_located((By.XPATH,"//li[@class='item product product-item']"))
     )
+
     ActionChains(driver).move_to_element(first_product).perform()
     add_to_compare_button = WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.XPATH, "//button[@class='action tocart primary']"))
