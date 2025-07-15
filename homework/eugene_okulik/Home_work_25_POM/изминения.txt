@@ -1,0 +1,5 @@
+https://github.com/DaShamin666/magento/tree/branch_2
+Здравствуйте
+https://github.com/DaShamin666/magento/blob/branch_3/tests/test_registration.py
+
+
