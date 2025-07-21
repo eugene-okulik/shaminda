@@ -1,24 +1,23 @@
-from playwright.sync_api import Page,expect
-import re
+from playwright.sync_api import Page, expect
 
 
 def test_second_by_role(page: Page):
     page.goto("https://the-internet.herokuapp.com/")
-    search_form = page.get_by_role("link",name="Form Authentication")
+    search_form = page.get_by_role("link", name="Form Authentication")
     search_form.click()
-    name_field = page.get_by_role("textbox",name="username")
+    name_field = page.get_by_role("textbox", name="username")
     name_field.fill("username11")
-    password_field = page.get_by_role("textbox",name="password")
+    password_field = page.get_by_role("textbox", name="password")
     password_field.fill("12345qwerty")
-    button_field = page.get_by_role("button",name="Login")
+    button_field = page.get_by_role("button", name="Login")
     button_field.click()
 
 
 def test_third_by(page: Page):
     page.goto("https://demoqa.com/automation-practice-form")
-    firs_name = page.get_by_role("textbox",name="First Name")
-    firs_name.fill("daniil")
-    second_name = page.get_by_role("textbox",name="Last Name")
+    first_name = page.get_by_role("textbox", name="First Name")
+    first_name.fill("daniil")
+    second_name = page.get_by_role("textbox", name="Last Name")
     second_name.fill("shamin")
     email = page.get_by_placeholder("name@example.com")
     email.fill("sham@eand.com")
@@ -34,9 +33,9 @@ def test_third_by(page: Page):
     subjects.press("Enter")
     hobbies = page.query_selector("input[type='checkbox'][id='hobbies-checkbox-1']")
     hobbies.click()
-    curent_adress = page.query_selector("#currentAddress")
-    curent_adress.fill("Parish")
-    state =page.query_selector("//input[@id='react-select-3-input']")
+    current_address = page.query_selector("#currentAddress")
+    current_address.fill("Parish")
+    state = page.query_selector("//input[@id='react-select-3-input']")
     state.fill("NCR")
     city = page.query_selector("//input[@id='city']")
     city.fill("Delhi")
@@ -48,7 +47,7 @@ def test_third_by(page: Page):
         "Student Email": "sham@eand.com",
         "Gender": "Other",
         "Mobile": "8934345576",
-        "Date of Birth": "29 April,1998",
+        "Date of Birth": "29 April, 1998",
         "Subjects": "English",
         "Hobbies": "Sports",
         "Address": "Parish",
@@ -63,10 +62,9 @@ def test_third_by(page: Page):
         value = row.locator("td:nth-of-type(2)").inner_text()
         actual_data[key] = value
 
-
     for key, expected_value in expected_data.items():
         actual_value = actual_data.get(key)
         assert actual_value == expected_value, f"Mismatch for {key}: expected '{expected_value}', got '{actual_value}'"
 
-    close_button =  page.get_by_role("button", name="Close")
+    close_button = page.get_by_role("button", name="Close")
     close_button.click()
