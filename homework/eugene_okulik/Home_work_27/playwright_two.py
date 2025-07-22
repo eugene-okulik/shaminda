@@ -1,5 +1,4 @@
-from playwright.sync_api import Page,expect
-
+from playwright.sync_api import Page, expect
 
 
 def test_alert(page: Page):
@@ -24,8 +23,8 @@ def test_new_tab_navigation(page: Page):
     page1.wait_for_load_state("load")
     result_text = page1.locator("#result-text")
     assert result_text.is_visible(), "Element with text 'I am a new page in a new tab' is not visible"
-
     assert result_text.inner_text() == "I am a new page in a new tab", "Text does not match"
+
     page1.close()
     page.go_back()
     page.wait_for_load_state("load")
