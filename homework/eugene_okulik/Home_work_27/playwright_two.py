@@ -33,10 +33,9 @@ def test_new_tab_navigation(page: Page):
 
 
 def test_color(page: Page):
-    page.goto("https://demoqa.com/dynamic-properties")
+    page.goto("https://demoqa.com/dynamic-properties", timeout=60000)
     color_change_button = page.locator("#colorChange")
     color_change_button.wait_for(state="visible")
     color_change_button.click()
     page.wait_for_timeout(6000)
-    button_color = color_change_button.evaluate("element => window.getComputedStyle(element).backgroundColor")
-    assert button_color == "rgb(0, 105, 217)", f"Expected color 'rgb(0, 105, 217)', but got '{button_color}'"
+    expect(color_change_button).to_have_css("background-color", "rgb(0, 105, 217)")
