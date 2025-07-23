@@ -12,6 +12,7 @@ def test_alert(page: Page):
     result_text = result_element.text_content()
     expect(result_text).to_be("Ok")
 
+
 def test_new_tab_navigation(page: Page):
     page.goto("https://www.qa-practice.com/elements/new_tab/button")
     with page.expect_popup() as page1_info:
