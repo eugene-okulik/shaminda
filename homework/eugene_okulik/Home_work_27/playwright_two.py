@@ -10,26 +10,22 @@ def test_alert(page: Page):
     dialog.accept()
     result_element = page.locator("#result-text")
     result_text = result_element.text_content()
-    assert result_text == "Ok", f"Expected 'Ok', but got '{result_text}'"
-
+    expect(result_text).to_be("Ok")
 
 def test_new_tab_navigation(page: Page):
     page.goto("https://www.qa-practice.com/elements/new_tab/button")
-
     with page.expect_popup() as page1_info:
         page.get_by_role("link", name="Click").click()
-
     page1 = page1_info.value
     page1.wait_for_load_state("load")
     result_text = page1.locator("#result-text")
-    assert result_text.is_visible(), "Element with text 'I am a new page in a new tab' is not visible"
-    assert result_text.inner_text() == "I am a new page in a new tab", "Text does not match"
-
+    expect(result_text).to_be_visible()
+    expect(result_text.inner_text()).to_be("I am a new page in a new tab")
     page1.close()
     page.go_back()
     page.wait_for_load_state("load")
     new_page_button = page.locator("#new-page-button")
-    assert new_page_button.is_enabled(), "Element 'Click' is not enabled"
+    expect(new_page_button).to_be_enabled()
 
 
 def test_color(page: Page):
