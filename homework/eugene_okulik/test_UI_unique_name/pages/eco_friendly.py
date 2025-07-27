@@ -1,19 +1,35 @@
 from test_UI_unique_name.base.base_page import BasePage
 
+
 class EcoFriendlyPage(BasePage):
     _PAGE_URL = 'https://magento.softwaretestingboard.com/collections/eco-friendly.html'
 
-    _BUTTON_NEXT = "//a[@class='action next' and @title='Next' and contains(span/text(), 'Next')]"
-    _CHOISE_SHMOT = "//img[@class='product-image-photo' and contains(@src, 'mj06-blue_main_1.jpg')]"
-    _CHOISE_SIZE = "//div[@class='swatch-option text' and @option-id='170' and @aria-label='XL']"
-    _CHOISE_COLOR = ("//div[@class='swatch-option color selected'"
-                     " and @option-id='57' and @aria-checked='true']")
+    _BUTTON_NEXT = (
+        "//a[@class='action next' and @title='Next' and contains(span/text(), 'Next')]"
+    )
+    _CHOISE_SHMOT = (
+        "//img[@class='product-image-photo' and contains(@src, 'mj06-blue_main_1.jpg')]"
+    )
+    _CHOISE_SIZE = (
+        "//div[@class='swatch-option text' and @option-id='170' and @aria-label='XL']"
+    )
+    _CHOISE_COLOR = (
+        "//div[@class='swatch-option color selected'"
+        " and @option-id='57' and @aria-checked='true']"
+    )
     _CLICK_TO_COMPAIR = "//a[span[text()='Add to Compare']]"
     _ITEM_LIST = "//strong[@id='block-compare-heading' and text()='Compare Products']"
     _ITEM_COUNT = "//span[@class='counter qty' and text()='1 item']"
-    _CLICK_CLEAR_COMPAIR ="//a[@id='compare-clear-all' and contains(span/text(), 'Clear All')]"
-    _CLICK_ADD_TO_CART = "//button[@title='Add to Cart' and contains(@class, 'action tocart primary') and span[text()='Add to Cart']]"
-    _CART = "//span[@class='counter qty' and span[@class='counter-number' and text()]]"
+    _CLICK_CLEAR_COMPAIR = (
+        "//a[@id='compare-clear-all' and contains(span/text(), 'Clear All')]"
+    )
+    _CLICK_ADD_TO_CART = (
+        "//button[@title='Add to Cart' and contains(@class, 'action tocart primary') "
+        "and span[text()='Add to Cart']]"
+    )
+    _CART = (
+        "//span[@class='counter qty' and span[@class='counter-number' and text()]]"
+    )
 
     def click_next(self):
         self.click_element(self._BUTTON_NEXT)

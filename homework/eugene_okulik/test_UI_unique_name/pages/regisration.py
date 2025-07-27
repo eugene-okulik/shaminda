@@ -42,5 +42,3 @@ class RegistrationPage(BasePage):
 
     def enter_value_again(self):
         return self.find_element(self._ENTER_VALUE_AGAIN).inner_text()
-
-
