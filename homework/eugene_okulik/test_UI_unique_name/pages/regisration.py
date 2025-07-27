@@ -1,5 +1,5 @@
 from test_UI_unique_name.base.base_page import BasePage
-import allure
+
 
 class RegistrationPage(BasePage):
     _PAGE_URL = 'https://magento.softwaretestingboard.com/customer/account/create/'
@@ -11,7 +11,8 @@ class RegistrationPage(BasePage):
     _CONFIRM_PASSWORD = "//input[@id='password-confirmation' and contains(@class, 'input-text')]"
     _BUTTON_CONFIRM = ("//button[contains(@class, 'action submit primary')"
                        " and @title='Create an Account']")
-    _TEXT_SUCSSES_CREATE_ACCOUNT = ("//div[contains(text(), 'Thank you for registering with Main Website Store.')]")
+    _TEXT_SUCSSES_CREATE_ACCOUNT = ("//div[contains(text(), "
+                                    "'Thank you for registering with Main Website Store.')]")
     _PASSWORD_STRENGHTH_WEAK = ("//div[@id='password-strength-meter' and contains(., 'Weak')]")
     _ENTER_VALUE_AGAIN = ("//div[@id='password-confirmation-error'"
                           " and contains(text(), 'Please enter the same value again.')]")

@@ -8,9 +8,11 @@ from test_UI_unique_name.pages.sale import SalePage
 def registration(page):
     return RegistrationPage(page)
 
+
 @pytest.fixture
 def eco_friendly(page):
     return EcoFriendlyPage(page)
+
 
 @pytest.fixture
 def sale(page):

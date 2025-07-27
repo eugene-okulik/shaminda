@@ -21,7 +21,7 @@ class TestRegistration:
         with allure.step("аккаунт успешно создан"):
             success_message = registration.text_sucsses_create()
             expected_message = "Thank you for registering with Main Website Store."
-            assert success_message == expected_message, (f"Ожидалось: '{expected_message}', но было: '{success_message}'")
+            assert success_message == expected_message, (f"Ожидалось: '{expected_message}',было: '{success_message}'")
 
     @allure.title("Регистрируемся(негативный тест Password Strength: Weak)")
     def test_registration_negativ(self, registration):
@@ -42,7 +42,7 @@ class TestRegistration:
         with allure.step("слабый пароль"):
             success_message = registration.password_strength_weak()
             expected_message = "Weak"
-            assert success_message == expected_message, (f"Ожидалось: '{expected_message}', но было: '{success_message}'")
+            assert success_message == expected_message, (f"Ожидалось: '{expected_message}',было: '{success_message}'")
 
     @allure.title("Регистрируемся(негативный тест Please enter the same value again)")
     def test_registration_enter_value_again(self, registration):
@@ -63,4 +63,4 @@ class TestRegistration:
         with allure.step("введите пароль еще раз"):
             success_message = registration.enter_value_again()
             expected_message = "Please enter the same value again."
-            assert success_message == expected_message, (f"Ожидалось: '{expected_message}', но было: '{success_message}'")
+            assert success_message == expected_message, (f"Ожидалось: '{expected_message}',было: '{success_message}'")
