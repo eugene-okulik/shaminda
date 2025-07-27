@@ -1,5 +1,6 @@
 import allure
 
+
 @allure.feature("тесты регистрации пользователя")
 class TestRegistration:
     @allure.title("Регистрируемся(позитивный тест)")

@@ -1,5 +1,6 @@
 import allure
 
+
 @allure.feature("Выбираем товар на странице eco-friendly ")
 class TestChoiseShmot:
     @allure.title("выбираем товар, добавляем его в раздел сравнений")

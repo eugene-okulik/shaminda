@@ -1,5 +1,6 @@
 import allure
 
+
 @allure.feature("Тесты раздела Sale")
 class TestSale:
     @allure.title("выбираем товар, добавляем его в раздел сравнений")
