@@ -1,6 +1,8 @@
 
 
 class BasePage:
+    _PAGE_URL = ""
+
     def __init__(self, page):
         self.page = page
 

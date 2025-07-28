@@ -3,6 +3,7 @@ import allure
 
 @allure.feature("Тесты раздела Sale")
 class TestSale:
+
     @allure.title("выбираем товар, добавляем его в раздел сравнений")
     def test_shopping(self, sale):
         with allure.step("открываем страницу выбора товара"):
@@ -14,10 +15,10 @@ class TestSale:
         with allure.step("выбираем цвет"):
             sale.choose_color_yellow()
         with allure.step("нажимаем кнопку добавить в сравнение"):
-            sale.click_clear_compaire()
+            sale.click_compair()
         with allure.step("проверяем что товар добавился"):
-            quantity = sale.item_list()
-            assert quantity >= 1
+            count = sale.item_list()
+            assert count > 0
 
     @allure.title("очищаем список сравнения")
     def test_clear_compair(self, sale):
@@ -30,9 +31,10 @@ class TestSale:
         with allure.step("выбираем цвет"):
             sale.choose_color_yellow()
         with allure.step("нажимаем кнопку добавить в сравнение"):
-            sale.click_clear_compaire()
+            sale.click_compair()
         with allure.step("проверяем что товар добавился"):
-            sale.item_list()
+            count = sale.item_list()
+            assert count > 0
         with allure.step("очищаем список"):
             sale.click_clear_compair()
 
@@ -49,5 +51,5 @@ class TestSale:
         with allure.step("добавляем товар в корзину"):
             sale.click_add_to_cart()
         with allure.step("проверяем что товар появился в корзине"):
-            cart = sale.cart_changed()
-            assert len(cart) >= 1
+            count = sale.get_cart_items_count()
+            assert count > 0

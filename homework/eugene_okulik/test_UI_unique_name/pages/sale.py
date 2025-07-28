@@ -1,4 +1,5 @@
 from test_UI_unique_name.base.base_page import BasePage
+from playwright.sync_api import expect
 
 
 class SalePage(BasePage):
@@ -7,9 +8,7 @@ class SalePage(BasePage):
     _WOMENS_DEALS = (
         "//a[@class='block-promo sale-main' and .//span[@class='info' and text()='Women s Deals']]"
     )
-    _CHOISE_SHMOT = (
-        "//img[@class='product-image-photo' and @alt='Breathe-Easy Tank']"
-    )
+    _PRODUCTS = "//img[@class='product-image-photo']"
     _CHOISE_SIZE = (
         "//div[@class='swatch-option text' and @option-label='S']"
     )
@@ -36,7 +35,9 @@ class SalePage(BasePage):
         self.click_element(self._WOMENS_DEALS)
 
     def choise_tshort(self):
-        self.action_choose(self._CHOISE_SHMOT)
+        products = self.page.locator(self._PRODUCTS)
+        expect(products).to_have_count(lambda count: count > 0)
+        products.nth(0).click()
 
     def choose_size_s(self):
         self.click_element(self._CHOISE_SIZE)
@@ -49,8 +50,8 @@ class SalePage(BasePage):
 
     def item_list(self):
         items = self.find_element(self._ITEM_LIST)
-        items_count = len(items.locator(self._ITEM_COUNT).all())
-        return items_count
+        count = len(items.locator(self._ITEM_COUNT).all())
+        return count
 
     def click_clear_compaire(self):
         dialog_handled = False
@@ -67,5 +68,6 @@ class SalePage(BasePage):
     def click_add_to_cart(self):
         self.click_element(self._CLICK_ADD_TO_CART)
 
-    def cart_changed(self):
-        return self.find_element(self._CART).inner_text()
+    def get_cart_items_count(self):
+        cart_text = self.find_element(self._CART).inner_text()
+        return int(cart_text) if cart_text.isdigit() else 0

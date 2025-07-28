@@ -3,6 +3,10 @@ import allure
 
 @allure.feature("тесты регистрации пользователя")
 class TestRegistration:
+
+    def check_result(self, actual, expected):
+        assert actual == expected, f"Ожидалось: '{expected}', было: '{actual}'"
+
     @allure.title("Регистрируемся(позитивный тест)")
     def test_registration(self, registration):
         with allure.step("открываем страницу регистрации"):
@@ -20,9 +24,9 @@ class TestRegistration:
         with allure.step("Нажимаем кнопку: 'create account'"):
             registration.click_button_confirm()
         with allure.step("аккаунт успешно создан"):
-            success_message = registration.text_sucsses_create()
-            expected_message = "Thank you for registering with Main Website Store."
-            assert success_message == expected_message, (f"Ожидалось: '{expected_message}',было: '{success_message}'")
+            actual = registration.text_sucsses_create()
+            expected = "Thank you for registering with Main Website Store."
+            self.check_result(actual, expected)
 
     @allure.title("Регистрируемся(негативный тест Password Strength: Weak)")
     def test_registration_negativ(self, registration):
@@ -41,9 +45,9 @@ class TestRegistration:
         with allure.step("Нажимаем кнопку: 'create account'"):
             registration.click_button_confirm()
         with allure.step("слабый пароль"):
-            success_message = registration.password_strength_weak()
-            expected_message = "Weak"
-            assert success_message == expected_message, (f"Ожидалось: '{expected_message}',было: '{success_message}'")
+            actual = registration.password_strength_weak()
+            expected = "Weak"
+            self.check_result(actual, expected)
 
     @allure.title("Регистрируемся(негативный тест Please enter the same value again)")
     def test_registration_enter_value_again(self, registration):
@@ -62,6 +66,6 @@ class TestRegistration:
         with allure.step("Нажимаем кнопку: 'create account'"):
             registration.click_button_confirm()
         with allure.step("введите пароль еще раз"):
-            success_message = registration.enter_value_again()
-            expected_message = "Please enter the same value again."
-            assert success_message == expected_message, (f"Ожидалось: '{expected_message}',было: '{success_message}'")
+            actual = registration.enter_value_again()
+            expected = "Please enter the same value again."
+            self.check_result(actual, expected)

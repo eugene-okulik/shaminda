@@ -1,4 +1,5 @@
 from test_UI_unique_name.base.base_page import BasePage
+from playwright.sync_api import expect
 
 
 class EcoFriendlyPage(BasePage):
@@ -7,9 +8,7 @@ class EcoFriendlyPage(BasePage):
     _BUTTON_NEXT = (
         "//a[@class='action next' and @title='Next' and contains(span/text(), 'Next')]"
     )
-    _CHOISE_SHMOT = (
-        "//img[@class='product-image-photo' and contains(@src, 'mj06-blue_main_1.jpg')]"
-    )
+    _PRODUCTS = "//img[@class='product-image-photo']"
     _CHOISE_SIZE = (
         "//div[@class='swatch-option text' and @option-id='170' and @aria-label='XL']"
     )
@@ -35,7 +34,9 @@ class EcoFriendlyPage(BasePage):
         self.click_element(self._BUTTON_NEXT)
 
     def acction_choose(self):
-        self.action_choose(self._CHOISE_SHMOT)
+        products = self.page.locator(self._PRODUCTS)
+        expect(products).to_have_count(lambda count: count > 0)
+        products.nth(0).click()
 
     def click_choose_size_xl(self):
         self.click_element(self._CHOISE_SIZE)
@@ -48,8 +49,8 @@ class EcoFriendlyPage(BasePage):
 
     def item_list(self):
         items = self.find_element(self._ITEM_LIST)
-        items_count = len(items.locator(self._ITEM_COUNT).all())
-        return items_count
+        count = len(items.locator(self._ITEM_COUNT).all())
+        return count
 
     def click_clear_compair(self):
         dialog_handled = False
@@ -66,5 +67,6 @@ class EcoFriendlyPage(BasePage):
     def click_add_to_cart(self):
         self.click_element(self._CLICK_ADD_TO_CART)
 
-    def cart_changed(self):
-        return self.find_element(self._CART).inner_text()
+    def get_cart_items_count(self):
+        cart_text = self.find_element(self._CART).inner_text()
+        return int(cart_text) if cart_text.isdigit() else 0

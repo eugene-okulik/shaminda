@@ -9,13 +9,19 @@ class RegistrationPage(BasePage):
     _EMAIL = "//input[@id='email_address' and contains(@class, 'input-text')]"
     _PASSWORD = "//input[@id='password' and contains(@class, 'input-text')]"
     _CONFIRM_PASSWORD = "//input[@id='password-confirmation' and contains(@class, 'input-text')]"
-    _BUTTON_CONFIRM = ("//button[contains(@class, 'action submit primary')"
-                       " and @title='Create an Account']")
-    _TEXT_SUCSSES_CREATE_ACCOUNT = ("//div[contains(text(), "
-                                    "'Thank you for registering with Main Website Store.')]")
-    _PASSWORD_STRENGHTH_WEAK = ("//div[@id='password-strength-meter' and contains(., 'Weak')]")
-    _ENTER_VALUE_AGAIN = ("//div[@id='password-confirmation-error'"
-                          " and contains(text(), 'Please enter the same value again.')]")
+    _BUTTON_CONFIRM = (
+        "//button[contains(@class, 'action submit primary')"
+        " and @title='Create an Account']"
+    )
+    _TEXT_SUCSSES_CREATE_ACCOUNT = (
+        "//div[contains(text(), 'Thank you for registering with Main Website Store.')]"
+    )
+    _PASSWORD_STRENGHTH_WEAK = (
+        "//div[@id='password-strength-meter' and contains(., 'Weak')]"
+    )
+    _ENTER_VALUE_AGAIN = (
+        "//div[@id='password-confirmation-error' and contains(text(), 'Please enter the same value again.')]"
+    )
 
     def input_firstname(self, firstname):
         self.input_text(self._FIRST_NAME, firstname)

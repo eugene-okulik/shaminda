@@ -3,6 +3,7 @@ import allure
 
 @allure.feature("Выбираем товар на странице eco-friendly ")
 class TestChoiseShmot:
+
     @allure.title("выбираем товар, добавляем его в раздел сравнений")
     def test_shopping(self, eco_friendly):
         with allure.step("открываем страницу выбора товара"):
@@ -18,8 +19,8 @@ class TestChoiseShmot:
         with allure.step("нажимаем кнопку добавить в сравнение"):
             eco_friendly.click_compair()
         with allure.step("проверяем что товар добавился"):
-            quantity = eco_friendly.item_list()
-            assert quantity >= 1
+            count = eco_friendly.item_list()
+            assert count > 0
 
     @allure.title("очищаем список сравнения")
     def test_clear_compair(self, eco_friendly):
@@ -36,7 +37,8 @@ class TestChoiseShmot:
         with allure.step("нажимаем кнопку добавить в сравнение"):
             eco_friendly.click_compair()
         with allure.step("проверяем что товар добавился"):
-            eco_friendly.item_list()
+            count = eco_friendly.item_list()
+            assert count > 0
         with allure.step("очищаем список"):
             eco_friendly.click_clear_compair()
 
@@ -55,5 +57,5 @@ class TestChoiseShmot:
         with allure.step("добавляем товар в корзину"):
             eco_friendly.click_add_to_cart()
         with allure.step("проверяем что товар появился в корзине"):
-            cart = eco_friendly.cart_changed()
-            assert len(cart) >= 1
+            count = eco_friendly.get_cart_items_count()
+            assert count > 0
