@@ -1,0 +1,66 @@
+Команды для работы с программой man
+Go to first line in file:
+g
+Go to last line in file:
+G
+Forward one window:
+Ctrl + F или Space
+Forward one line:
+j или Down Arrow
+Backward one line:
+k или Up Arrow
+Search forward for matching line:
+/ (введите строку для поиска и нажмите Enter)
+Search backward for matching line:
+? (введите строку для поиска и нажмите Enter)
+Repeat previous search:
+n
+Repeat previous search in reverse direction:
+N
+
+Определение типов файлов
+
+/dev/null
+Тип: Специальный файл (пустой файл)
+Команда: stat /dev/null
+Первый символ: c (character device)
+
+/dev/zero
+Тип: Специальный файл (генерирует нули)
+Команда: stat /dev/zero
+Первый символ: c (character device)
+
+/dev/sda
+Тип: Специальный файл (жесткий диск)
+Команда: stat /dev/sda
+Первый символ: b (block device)
+
+/dev/tty
+Тип: Специальный файл (терминал)
+Команда: stat /dev/tty
+Первый символ: c (character device)
+
+/root
+Тип: Директория
+Команда: stat /root
+Первый символ: d
+
+/etc/passwd
+Тип: Обычный файл (файл с учетными записями пользователей)
+Команда: stat /etc/passwd
+Первый символ: -
+
+/proc/mounts
+Тип: Обычный файл (файл с информацией о смонтированных файловых системах)
+Команда: stat /proc/mounts
+Первый символ: -
+
+/bin/ls
+Тип: Обычный файл (исполняемый файл)
+Команда: stat /bin/ls
+Первый символ: -
+
+/bin/zcat
+Тип: Обычный файл (исполняемый файл)
+Команда: stat /bin/zcat
+Первый символ: -
