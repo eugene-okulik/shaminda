@@ -1,0 +1,58 @@
+FROM jenkins/jenkins:lts
+
+# Переключаемся на root для установки пакетов
+USER root
+
+# Обновляем систему и устанавливаем Python и зависимости
+RUN apt-get update && \
+    apt-get install -y \
+        python3 \
+        python3-pip \
+        python3-venv \
+        curl \
+        git \
+        build-essential \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Создаем символическую ссылку для python
+RUN ln -sf /usr/bin/python3 /usr/bin/python
+
+# Обходим externally-managed-environment и устанавливаем пакеты
+RUN python3 -m pip install --break-system-packages --upgrade pip && \
+    python3 -m pip install --break-system-packages \
+        pytest==7.4.3 \
+        requests==2.31.0 \
+        pytest-html==4.1.1 \
+        allure-pytest==2.15.0
+
+# Устанавливаем Docker CLI (для возможности запуска Docker из Jenkins)
+RUN curl -fsSL https://get.docker.com -o get-docker.sh && \
+    sh get-docker.sh && \
+    rm get-docker.sh
+
+# Добавляем пользователя jenkins в группу docker
+RUN usermod -aG docker jenkins
+
+# Создаем рабочую директорию для тестов
+RUN mkdir -p /var/jenkins_home/workspace/API_Tests && \
+    chown -R jenkins:jenkins /var/jenkins_home/workspace/
+
+# Возвращаемся к пользователю jenkins
+USER jenkins
+
+# Предустанавливаем основные Jenkins плагины
+RUN jenkins-plugin-cli --plugins \
+    workflow-aggregator \
+    git \
+    junit
+
+# Копируем файлы проекта в образ
+COPY --chown=jenkins:jenkins . /var/jenkins_home/workspace/API_Tests/
+
+# Экспозиция портов
+EXPOSE 8080 50000
+
+# Переменные окружения
+ENV JENKINS_OPTS="--httpPort=8080"
+ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
