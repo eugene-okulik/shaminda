@@ -1,0 +1,1 @@
+https://github.com/DaShamin666/autotests-ui/blob/main/.github/workflows/tests-advanced.yml
