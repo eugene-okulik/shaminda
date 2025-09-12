@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  jenkins-custom:
+    build:
+      context: .
+      dockerfile: Dockerfile.jenkins
+    container_name: jenkins-api-tests-custom
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_data:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./:/var/jenkins_home/workspace/API_Tests
+    environment:
+      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
+      - JENKINS_OPTS=--httpPort=8080
+    restart: unless-stopped
+    networks:
+      - jenkins-network
+    privileged: true
+
+volumes:
+  jenkins_data:
+    driver: local
+
+networks:
+  jenkins-network:
+    driver: bridge
